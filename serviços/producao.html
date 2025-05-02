@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produção - Luz, Câmera, Crítica</title>
+  <link rel="stylesheet" href="../css/servicos/producao.css">
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <div>
+      <a href="../index.html">Início</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="../index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="../serviços/consultoria.html">Consultoria</a>
+          <a href="../serviços/producao.html">Produção</a>
+          <a href="../serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="../contato.html">Contato</a>
+    </div>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Seção de Produção -->
+  <section class="producao-container">
+    <h2>Serviço de Produção</h2>
+    <p>Nosso serviço de produção audiovisual transforma ideias em realidade. Desde roteiros até edição final, oferecemos um processo criativo e técnico completo para produções cinematográficas, comerciais e conteúdos digitais.</p>
+
+    <div class="producao-info">
+      <h3>O que oferecemos?</h3>
+      <ul>
+        <li>Desenvolvimento de roteiro</li>
+        <li>Direção e filmagem profissional</li>
+        <li>Edição e pós-produção</li>
+        <li>Criação de efeitos visuais</li>
+        <li>Mixagem de som e trilha sonora</li>
+      </ul>
+    </div>
+
+    <p>Entre em contato para saber mais sobre nossos pacotes de produção personalizados.</p>
+    <a href="./orcamento.html" class="botao-contato">Solicitar orçamento</a>
+  </section>
+
+  <script>
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      const selectedCategory = document.getElementById('search-category').value;
+
+      const dados = {
+        filmes: { "chico bento": "../filmes/cb.html", "cidade de deus": "../filmes/CDD.html", "o auto da compadecida": "../filmes/adc.html", "tropa de elite": "../filmes/tpe.html" },
+        series: { "3%": "../series/3porcento.html", "dom": "../series/dom.html" },
+        desenhos: { "turma da mônica": "../desenhos/turma.html", "bob esponja": "../desenhos/bob.html" },
+        novelas: { "avenida brasil": "../novelas/avenida.html", "pantanal": "../novelas/pantanal.html" }
+      };
+
+      if (!dados[selectedCategory]) {
+        alert("Categoria inválida!");
+        return;
+      }
+
+      let resultados = [];
+      for (let titulo in dados[selectedCategory]) {
+        if (titulo.includes(searchInput)) {
+          resultados.push(dados[selectedCategory][titulo]);
+        }
+      }
+
+      if (resultados.length === 1) {
+        window.location.href = resultados[0];
+      } else if (resultados.length > 1) {
+        alert("Múltiplos conteúdos encontrados! Adicione mais palavras-chave para refinar sua busca.");
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+  </script>
+
+</body>
+</html>

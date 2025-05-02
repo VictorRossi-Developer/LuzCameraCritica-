@@ -1,0 +1,183 @@
+/* Estilo do corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Barra de navegação */
+  nav {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  nav a:hover {
+    color: #ffcc00;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #555;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    background-color: #ffcc00;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: black;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .search-button:hover {
+    background-color: #ff9900;
+  }
+  
+  /* Cabeçalho */
+  .header {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .pipoca {
+    font-size: 50px;
+    display: inline-block;
+    animation: balancar 1.5s infinite ease-in-out;
+    margin-right: 10px;
+  }
+  
+  @keyframes balancar {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-10deg); }
+    50%  { transform: rotate(10deg); }
+    75%  { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  h1 {
+    color: red;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Seção detalhes do filme */
+  .movie-detail {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .movie-detail img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+  }
+  
+  .movie-info {
+    max-width: 600px;
+  }
+  
+  .movie-info h2 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .movie-info p {
+    font-size: 18px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  /* Ajuste para destacar textos em negrito */
+  .movie-info strong {
+    font-weight: bold;
+    color: #ffcc00 !important;
+  }
+  
+  /* Avaliação */
+  .movie-info h3 {
+    margin-top: 20px;
+  }
+  
+  .rating {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffcc00;
+  }
+  
+  form {
+    margin-top: 15px;
+  }
+  
+  select {
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #ffcc00;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #ff9900;
+  }
+  

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultoria - Luz, Câmera, Crítica</title>
+  <link rel="stylesheet" href="../css/servicos/consultoria.css">
+  
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <div>
+      <a href="../index.html">Início</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="../index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="../serviços/consultoria.html">Consultoria</a>
+          <a href="../serviços/producao.html">Produção</a>
+          <a href="../serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="../contato.html">Contato</a>
+    </div>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <div class="header">
+    <span class="pipoca">🍿</span>
+    <h1>Consultoria Cinematográfica</h1>
+  </div>
+
+  <!-- Seção de Consultoria -->
+  <section class="consultoria-container">
+    <h2>Nossos Serviços</h2>
+    <p>Oferecemos <strong>consultoria especializada</strong> para cineastas, produtores e entusiastas do audiovisual. Nossa equipe analisa <strong>roteiros, estratégias de distribuição</strong> e proporciona uma nova perspectiva sobre o mercado cinematográfico brasileiro.</p>
+
+    <h2>Como Funciona?</h2>
+    <p>Nosso serviço de consultoria conecta profissionais do setor com especialistas em <strong>cinema e produção</strong>. Criamos estratégias para tornar cada obra <strong>mais relevante e impactante</strong>.</p>
+
+    <h2>Solicite uma Consultoria</h2>
+    <form action="mailto:luzcameracritica@gmail.com" method="post" enctype="text/plain">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensagem">Detalhes da Consultoria:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button type="submit">Enviar Solicitação</button>
+    </form>
+  </section>
+
+  <script>
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      const selectedCategory = document.getElementById('search-category').value;
+
+      const dados = {
+        filmes: { "chico bento": "../filmes/cb.html", "cidade de deus": "../filmes/CDD.html", "o auto da compadecida": "../filmes/adc.html", "tropa de elite": "../filmes/tpe.html" },
+        series: { "3%": "../series/3porcento.html", "dom": "../series/dom.html" },
+        desenhos: { "turma da mônica": "../desenhos/turma.html", "bob esponja": "../desenhos/bob.html" },
+        novelas: { "avenida brasil": "../novelas/avenida.html", "pantanal": "../novelas/pantanal.html" }
+      };
+
+      if (!dados[selectedCategory]) {
+        alert("Categoria inválida!");
+        return;
+      }
+
+      let resultados = [];
+      for (let titulo in dados[selectedCategory]) {
+        if (titulo.includes(searchInput)) {
+          resultados.push(dados[selectedCategory][titulo]);
+        }
+      }
+
+      if (resultados.length === 1) {
+        window.location.href = resultados[0];
+      } else if (resultados.length > 1) {
+        alert("Múltiplos conteúdos encontrados! Adicione mais palavras-chave para refinar sua busca.");
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+  </script>
+
+</body>
+</html>

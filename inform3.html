@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Filme - O Auto da Compadecida</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Estiliza o menu flutuante */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333; /* Fundo escuro */
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: white; /* Letras brancas */
+    }
+
+    .dropdown-content a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Barra de navegação -->
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="sobre.html">Sobre</a>
+    <div class="dropdown">
+      <a href="servicos.html">Serviços</a>
+      <div class="dropdown-content">
+        <a href="./serviços/consultoria.html">Consultoria</a>
+        <a href="./serviços/producao.html">Produção</a>
+        <a href="./serviços/distribuicao.html">Distribuição</a>
+      </div>
+    </div>
+    <a href="contato.html">Contato</a>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Cabeçalho -->
+  <div class="header">
+    <span class="pipoca">🍿</span>
+    <h1>Detalhes do Filme - O Auto da Compadecida</h1>
+  </div>
+
+  <!-- Detalhes do Filme -->
+  <div class="movie-detail">
+    <img src="./img/o-auto-da-compadecida.jpg" alt="O Auto da Compadecida">
+    <div class="movie-info">
+      <h2>O Auto da Compadecida</h2>
+      <p><strong>Descrição:</strong> Baseado na obra de Ariano Suassuna, este clássico do cinema nacional mistura comédia e drama ao narrar as aventuras de João Grilo e Chicó no sertão nordestino.</p>
+      <p><strong>Ano:</strong> 2000</p>
+      <p><strong>Duração:</strong> 2h 4min</p>
+      <p><strong>Gênero:</strong> Comédia, Drama</p>
+      <p><strong>Classificação:</strong> Livre</p>
+      <p><strong>Avaliação:</strong> <span class="rating">★★★★★</span></p>
+      <p><strong>Diretor:</strong> Guel Arraes</p>
+      <p><strong>Elenco:</strong> Matheus Nachtergaele, Selton Mello, Denise Fraga</p>
+      <p><strong>Sinopse Completa:</strong> No sertão nordestino, João Grilo e Chicó tentam sobreviver com esperteza e enganações. Entre conflitos e encontros inusitados, os dois protagonistas acabam se deparando com a própria justiça divina, trazendo um desfecho surpreendente e emocionante.</p>
+
+      <!-- Botão para avaliar o filme -->
+      <a href="avaliacao.html" class="button">Avaliar Filme</a>
+    </div>
+  </div>
+
+  <script>
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      const selectedCategory = document.getElementById('search-category').value;
+
+      const dados = {
+        filmes: { "chico bento": "./filmes/cb.html", "cidade de deus": "./filmes/CDD.html", "o auto da compadecida": "./filmes/adc.html", "tropa de elite": "./filmes/tpe.html" },
+        series: { "3%": "./series/3porcento.html", "dom": "./series/dom.html" },
+        desenhos: { "turma da mônica": "./desenhos/turma.html", "bob esponja": "./desenhos/bob.html" },
+        novelas: { "avenida brasil": "./novelas/avenida.html", "pantanal": "./novelas/pantanal.html" }
+      };
+
+      if (!dados[selectedCategory]) {
+        alert("Categoria inválida!");
+        return;
+      }
+
+      let resultados = [];
+      for (let titulo in dados[selectedCategory]) {
+        if (titulo.includes(searchInput)) {
+          resultados.push(dados[selectedCategory][titulo]);
+        }
+      }
+
+      if (resultados.length === 1) {
+        window.location.href = resultados[0];
+      } else if (resultados.length > 1) {
+        alert("Múltiplos conteúdos encontrados! Adicione mais palavras-chave para refinar sua busca.");
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        searchFilme();
+      }
+    });
+  </script>
+
+</body>
+</html>

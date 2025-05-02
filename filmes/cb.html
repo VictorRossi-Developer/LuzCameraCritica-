@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Pesquisa - Luz, Câmera, Crítica</title>
+  <link rel="stylesheet" href="../css/filmes/cb.css">
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <div>
+      <a href="../index.html">Início</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="../index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="../serviços/consultoria.html">Consultoria</a>
+          <a href="../serviços/producao.html">Produção</a>
+          <a href="../serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="../contato.html">Contato</a>
+    </div>
+  </nav>
+
+  <!-- Barra de pesquisa funcional -->
+  <div class="search-container">
+    <input type="text" class="search-input" id="search-query" placeholder="Pesquisar..." value="Chico Bento">
+    <button class="search-button" onclick="searchFilme()">🔍</button>
+  </div>
+
+  <!-- Container de resultados -->
+  <section class="results-container" id="search-results">
+    <div class="video-result">
+      <img src="../img/chico-thumb.jpg" alt="Miniatura do Filme Chico Bento">
+      <div class="video-info">
+        <h3>🎬 Chico Bento: O Filme</h3>
+        <p>Descubra a emocionante jornada do querido Chico Bento! Uma história repleta de cultura, aventura e diversão.</p>
+        <p><strong>📆 Lançamento:</strong> 2024 | <strong>🎭 Direção:</strong> Nome do diretor</p>
+        <a href="../inform.html" class="watch-button">🎥 Assistir ao Filme</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function searchFilme() {
+      const query = document.getElementById("search-query").value.trim().toLowerCase();
+
+      const dados = {
+        filmes: { "chico bento": "./cb.html", "cidade de deus": "./CDD.html", "o auto da compadecida": "./adc.html", "tropa de elite": "./tpe.html" },
+        series: { "3%": "./series/3porcento.html", "dom": "./series/dom.html" },
+        desenhos: { "turma da mônica": "./desenhos/turma.html", "bob esponja": "./desenhos/bob.html" },
+        novelas: { "avenida brasil": "./novelas/avenida.html", "pantanal": "./novelas/pantanal.html" }
+      };
+
+      let resultadoEncontrado = false;
+
+      for (let categoria in dados) {
+        for (let titulo in dados[categoria]) {
+          if (titulo.includes(query)) {
+            window.location.href = dados[categoria][titulo];
+            resultadoEncontrado = true;
+            break;
+          }
+        }
+        if (resultadoEncontrado) break;
+      }
+
+      if (!resultadoEncontrado) {
+        alert("Nenhum resultado encontrado. Tente outra palavra-chave!");
+      }
+    }
+
+    // Adicionando evento para pressionar Enter
+    document.getElementById("search-query").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        searchFilme();
+      }
+    });
+  </script>
+
+</body>
+</html>

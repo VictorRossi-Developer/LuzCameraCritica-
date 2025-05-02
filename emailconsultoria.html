@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitação de Consultoria</title>
+  <link rel="stylesheet" href="./css/consultoria.css">
+</head>
+<body>
+
+  <div class="email-consultoria-container">
+    <h2>Solicitação de Consultoria</h2>
+    <form action="mailto:luzcameracritica@gmail.com" method="post" enctype="text/plain" onsubmit="return mostrarAnimacao()">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mensagem">Detalhes da Consultoria:</label>
+      <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+      <button type="submit">Enviar Solicitação</button>
+    </form>
+  </div>
+
+  <!-- Animação do balde de pipoca -->
+  <div class="pipoca-animacao" id="pipoca">
+    🍿
+    <p>Obrigado por nos contatar!</p>
+  </div>
+
+  <script>
+    function mostrarAnimacao() {
+      // Exibe a animação
+      document.getElementById("pipoca").style.display = "block";
+      
+      // Aguarda 2 segundos antes de redirecionar para index.html
+      setTimeout(function() {
+        window.location.href = "index.html";
+      }, 2000);
+
+      return true; // Permite o envio do formulário
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orçamento - Luz, Câmera, Crítica</title>
+  <link rel="stylesheet" href="../css/servicos/orcamento.css">
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <div>
+      <a href="../index.html">Início</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="../index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="../serviços/consultoria.html">Consultoria</a>
+          <a href="../serviços/producao.html">Produção</a>
+          <a href="../serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="../contato.html">Contato</a>
+    </div>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <!-- Seção de Orçamento -->
+  <section class="orcamento-container">
+    <h2>💰 Calculadora de Orçamento 🎬</h2>
+    <p>Insira as informações abaixo para obter uma estimativa de orçamento para nossos serviços.</p>
+
+    <form id="form-orcamento">
+      <label for="servico">Selecione o Serviço:</label>
+      <select id="servico">
+        <option value="producao">Produção Audiovisual</option>
+        <option value="consultoria">Consultoria Cinematográfica</option>
+        <option value="distribuicao">Distribuição de Conteúdo</option>
+      </select>
+
+      <label for="horas">Quantidade de Horas:</label>
+      <input type="number" id="horas" min="1" placeholder="Digite a quantidade de horas" required>
+
+      <label for="extras">Serviços Adicionais:</label>
+      <textarea id="extras" rows="3" placeholder="Descreva serviços adicionais (ex: edição, roteiro...)"></textarea>
+
+      <button type="button" onclick="calcularOrcamento()">Calcular Orçamento</button>
+    </form>
+
+    <div id="resultado-orcamento" class="resultado-container">
+      <p><strong>Estimativa de custo:</strong> <span id="valor-estimado">R$ 0,00</span></p>
+    </div>
+  </section>
+
+  <!-- Seção de Filmes -->
+  
+  <script>
+    function calcularOrcamento() {
+      const servico = document.getElementById("servico").value;
+      const horas = parseInt(document.getElementById("horas").value) || 0;
+
+      let precoBase = 0;
+
+      if (servico === "producao") precoBase = 200;
+      if (servico === "consultoria") precoBase = 150;
+      if (servico === "distribuicao") precoBase = 180;
+
+      let total = precoBase * horas;
+      document.getElementById("valor-estimado").textContent = `R$ ${total.toFixed(2)}`;
+    }
+
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      const selectedCategory = document.getElementById('search-category').value;
+
+      const dados = {
+        filmes: { "chico bento": "../filmes/cb.html", "cidade de deus": "../filmes/CDD.html", "o auto da compadecida": "../filmes/adc.html", "tropa de elite": "../filmes/tpe.html" },
+        series: { "3%": "../series/3porcento.html", "dom": "../series/dom.html" },
+        desenhos: { "turma da mônica": "../desenhos/turma.html", "bob esponja": "../desenhos/bob.html" },
+        novelas: { "avenida brasil": "../novelas/avenida.html", "pantanal": "../novelas/pantanal.html" }
+      };
+
+      if (!dados[selectedCategory]) {
+        alert("Categoria inválida!");
+        return;
+      }
+
+      let resultados = [];
+      for (let titulo in dados[selectedCategory]) {
+        if (titulo.includes(searchInput)) {
+          resultados.push(dados[selectedCategory][titulo]);
+        }
+      }
+
+      if (resultados.length === 1) {
+        window.location.href = resultados[0];
+      } else if (resultados.length > 1) {
+        alert("Múltiplos conteúdos encontrados! Adicione mais palavras-chave para refinar sua busca.");
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luz, câmera, crítica</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* Estiliza o menu flutuante */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333; /* Fundo escuro */
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: white; /* Letras brancas */
+    }
+
+    .dropdown-content a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  
+  <nav>
+    <div>
+      <a href="index.html">Início</a>
+      <a href="sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="./serviços/consultoria.html">Consultoria</a>
+          <a href="./serviços/producao.html">Produção</a>
+          <a href="./serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="contato.html">Contato</a>
+    </div>
+    <div class="search-bar">
+      <select class="search-select" id="search-category">
+        <option value="filmes">Filmes</option>
+        <option value="series">Séries</option>
+        <option value="desenhos">Desenhos</option>
+        <option value="novelas">Novelas</option>
+      </select>
+      <input type="text" class="search-input" id="search-input" placeholder="Pesquisar..." />
+      <button class="search-button" onclick="searchFilme()">Buscar</button>
+    </div>
+  </nav>
+
+  <div class="header">
+    <span class="pipoca">🍿</span>
+    <h1>Luz, câmera, crítica - Cultura cinematográfica brasileira</h1>
+  </div>
+
+  <div class="recommendations">
+    <div class="movies-container">
+      <div class="movie">
+        <img src="./img/Chico_Bento_e_a_Goiabeira_Maraviósa_trilha_sonora_oficial.jpg" alt="Filme 1">
+        <h3>Chico Bento e a Goiabeira Maraviósa</h3>
+        <p>Aventura.</p>
+        <button class="view-button" onclick="window.location.href='inform.html?id=1'">Ver mais</button>
+      </div>
+      <div class="movie">
+        <img src="./img/cidade-de-Deus-capa.jpg" alt="Filme 2">
+        <h3>Cidade De Deus</h3>
+        <p>Documentário, suspense, crime e drama</p>
+        <button class="view-button" onclick="window.location.href='inform2.html?id=2'">Ver mais</button>
+      </div>
+      <div class="movie">
+        <img src="./img/o-auto-da-compadecida.png" alt="Filme 3">
+        <h3>O Auto da Compadecida</h3>
+        <p>História de comédia, drama, amor.</p>
+        <button class="view-button" onclick="window.location.href='inform3.html?id=3'">Ver mais</button>
+      </div>
+      <div class="movie">
+        <img src="./img/tropa-de-elite.jpeg" alt="Filme 4">
+        <h3>Tropa de Elite</h3>
+        <p>Drama, ação, guerra, ficção policial.</p>
+        <button class="view-button" onclick="window.location.href='inform4.html?id=4'">Ver mais</button>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button class="prev" onclick="moveCarousel(-1)">❮</button>
+      <button class="next" onclick="moveCarousel(1)">❯</button>
+    </div>
+  </div>
+
+  <p style="text-align: center;">Conteúdo da página aqui...</p>
+
+  <script>
+    let currentIndex = 0;
+    let isPaused = false;
+
+    function moveCarousel(direction) {
+      isPaused = true;
+      setTimeout(() => { isPaused = false; }, 3000);
+      const container = document.querySelector('.movies-container');
+      const movies = document.querySelectorAll('.movie');
+      const totalMovies = movies.length;
+      const movieWidth = movies[0].offsetWidth + 20;
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = totalMovies - 1;
+      if (currentIndex >= totalMovies) currentIndex = 0;
+      container.style.transition = "transform 1s ease-in-out";
+      container.style.transform = `translateX(-${currentIndex * movieWidth}px)`;
+    }
+
+    function startCarousel() {
+      if (isPaused) return;
+      const container = document.querySelector('.movies-container');
+      const totalMovies = document.querySelectorAll('.movie').length;
+      const movieWidth = document.querySelector('.movie').offsetWidth + 20;
+      currentIndex = (currentIndex + 1) % totalMovies;
+      container.style.transition = "transform 1s ease-in-out";
+      container.style.transform = `translateX(-${currentIndex * movieWidth}px)`;
+    }
+
+    setInterval(startCarousel, 3000);
+
+    function searchFilme() {
+      const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+      if (searchInput === "chico bento") {
+        window.location.href = "chico-bento.html";
+      } else {
+        alert("Conteúdo não encontrado!");
+      }
+    }
+  </script>
+
+<script>
+  function searchFilme() {
+    const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+
+    // Mapeamento de filmes e páginas dentro da pasta ./filmes
+    const filmes = {
+      "chico bento": "./filmes/cb.html",
+      "tropa de elite": "./filmes/tpe.html",
+      "o auto da compadecida": "./filmes/adc.html",
+      "cidade de deus": "./filmes/CDD.html"
+    };
+
+    // Encontrar filmes que contenham a palavra pesquisada
+    let resultados = [];
+    for (let titulo in filmes) {
+      if (titulo.includes(searchInput)) {
+        resultados.push(filmes[titulo]);
+      }
+    }
+
+    if (resultados.length === 1) {
+      window.location.href = resultados[0]; // Redireciona diretamente se houver um único resultado
+    } else if (resultados.length > 1) {
+      alert("Múltiplos filmes encontrados! Adicione mais palavras-chave para refinar sua busca.");
+    } else {
+      alert("Filme não encontrado!");
+    }
+  }
+
+  // Permite enviar a pesquisa ao pressionar Enter
+  document.getElementById('search-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      searchFilme();
+    }
+  });
+</script>
+
+
+</body>
+</html>

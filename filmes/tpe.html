@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Pesquisa - Luz, Câmera, Crítica</title>
+  <link rel="stylesheet" href="/css/filmes/tpe.css">
+
+  <style>
+    /* Tive que copiar aqui com o style, porque está com algum bug e o css não vincula. */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* Fundo branco */
+  color: #333; /* Texto escuro */
+}
+
+/* Barra de navegação */
+nav {
+  background-color: #333; /* Tom escuro */
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff9900;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Barra de pesquisa */
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.search-input {
+  width: 50%;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.search-button {
+  background-color: #ff9900;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  color: black;
+  border-radius: 25px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+.search-button:hover {
+  background-color: #e68500;
+}
+
+/* Container de resultados */
+.results-container {
+  max-width: 900px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos resultados */
+.video-result {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.video-result img {
+  width: 180px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.video-info {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.video-info h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.video-info p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Botão para assistir ao filme */
+.watch-button {
+  display: inline-block;
+  background-color: #ff9900;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.watch-button:hover {
+  background-color: #e68500;
+}
+
+  </style>
+
+</head>
+<body>
+
+  <!-- Barra de navegação -->
+  <nav>
+    <div>
+      <a href="../index.html">Início</a>
+      <a href="../sobre.html">Sobre</a>
+      <div class="dropdown">
+        <a href="../index.html">Serviços</a>
+        <div class="dropdown-content">
+          <a href="../serviços/consultoria.html">Consultoria</a>
+          <a href="../serviços/producao.html">Produção</a>
+          <a href="../serviços/distribuicao.html">Distribuição</a>
+        </div>
+      </div>
+      <a href="../contato.html">Contato</a>
+    </div>
+  </nav>
+
+  <!-- Barra de pesquisa funcional -->
+  <div class="search-container">
+    <input type="text" class="search-input" id="search-query" placeholder="Pesquisar..." value="Tropa de Elite">
+    <button class="search-button" onclick="searchFilme()">🔍</button>
+  </div>
+
+  <!-- Container de resultados -->
+  <section class="results-container" id="search-results">
+    <div class="video-result">
+      <img src="../img/tropa-de-elite.jpeg" alt="Miniatura do Filme Tropa de Elite">
+      <div class="video-info">
+        <h3>🎬 Tropa de Elite</h3>
+        <p>Filme impactante sobre o BOPE, revelando os desafios da segurança pública no Rio de Janeiro.</p>
+        <p><strong>📆 Lançamento:</strong> 2007 | <strong>🎭 Direção:</strong> José Padilha</p>
+        <a href="../inform4.html" class="watch-button">🎥 Assistir ao Filme</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function searchFilme() {
+      const query = document.getElementById("search-query").value.trim().toLowerCase();
+
+      const dados = {
+        filmes: { "chico bento": "./cb.html", "cidade de deus": "./CDD.html", "o auto da compadecida": "./adc.html", "tropa de elite": "./tpe.html" },
+        series: { "3%": "./series/3porcento.html", "dom": "./series/dom.html" },
+        desenhos: { "turma da mônica": "./desenhos/turma.html", "bob esponja": "./desenhos/bob.html" },
+        novelas: { "avenida brasil": "./novelas/avenida.html", "pantanal": "./novelas/pantanal.html" }
+      };
+
+      let resultadoEncontrado = false;
+
+      for (let categoria in dados) {
+        for (let titulo in dados[categoria]) {
+          if (titulo.includes(query)) {
+            window.location.href = dados[categoria][titulo];
+            resultadoEncontrado = true;
+            break;
+          }
+        }
+        if (resultadoEncontrado) break;
+      }
+
+      if (!resultadoEncontrado) {
+        alert("Nenhum resultado encontrado. Tente outra palavra-chave!");
+      }
+    }
+
+    // Adicionando evento para pressionar Enter
+    document.getElementById("search-query").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        searchFilme();
+      }
+    });
+  </script>
+
+</body>
+</html>
